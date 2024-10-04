@@ -1,0 +1,997 @@
+{
+"TYPES": {
+  "Actor": {
+    "adversary": "Adversaire",
+    "hero": "Protagoniste",
+    "npc": "Personnage non joueur"
+  },
+  "Item": {
+    "ancestry": "Ascendance",
+    "archetype": "Archétype",
+    "armor": "Armure",
+    "background": "Historique",
+    "spell": "Sort iconique",
+    "taxonomy": "Taxonomie",
+    "talent": "Talent",
+    "weapon": "Arme"
+  },
+  "JournalEntryPage": {
+    "skill": "Compétence Crucible"
+  }
+},
+
+"CRUCIBLE": {
+  "Base": "Base",
+  "Bonus": "Bonus",
+  "Rules": "Règles de Crucible",
+  "Scaling": "Dimensionnement",
+  "Scaled": "Dimensionné",
+
+  "SHEETS": {
+    "Armor": "Feuille d'armure Crucible",
+    "Journal": "Feuille de journal Crucible"
+  }
+},
+
+"ABILITIES.Strength": "Force",
+"ABILITIES.StrengthAbbr": "For",
+"ABILITIES.Toughness": "Robustesse",
+"ABILITIES.ToughnessAbbr": "Rob",
+"ABILITIES.Dexterity": "Dextérité",
+"ABILITIES.DexterityAbbr": "Dex",
+"ABILITIES.Intellect": "Intelligence",
+"ABILITIES.IntellectAbbr": "Int",
+"ABILITIES.Presence": "Présence",
+"ABILITIES.PresenceAbbr": "Pre",
+"ABILITIES.Wisdom": "Sagesse",
+"ABILITIES.WisdomAbbr": "Sag",
+
+"ADVERSARY.ThreatMinion": "Minion",
+"ADVERSARY.ThreatNormal": "Normal",
+"ADVERSARY.ThreatElite": "Elite",
+"ADVERSARY.ThreatBoss": "Boss",
+
+"ACTION": {
+  "FIELDS": {
+    "cost": {
+      "label": "Cout de l'action",
+      "hint": "Configure le cout pour utiliser cette action en points d'action, points de focus ou d'héroisme.",
+      "action": {
+        "label": "Action",
+        "hint": "Le cout de base de cette action en points d'action."
+      },
+      "focus": {
+        "label": "Focus",
+        "hint": "Le cout de base de cette action en points de focus."
+      },
+      "heroism": {
+        "label": "Héroisme",
+        "hint": "Le cout de base de cette action en points d'héroisme."
+      },
+      "weapon": {
+        "label": "Ajout du cout de l'arme",
+        "hint": "Est-ce que le cout en points d'action de l'arme équipée est ajouté au cout de cette action?"
+      }
+    },
+    "id": {
+      "label": "Identifiant",
+      "hint": "Fournit un identifiant alpha-numérique standardisé en notation Camel pour cette action. Cet identifiant devrait être unique parmi toutes leas actions du système."
+    },
+    "condition": {
+      "label": "Déclencheur",
+      "hint": "Texte de référence additionnel qui clarifie les déclencheurs prérequis sous lesquels une action peut être utilisée."
+    },
+    "description": {
+      "label": "Description de l'action",
+      "hint": "Une description de comment l'action fonctionne mécaniquement."
+    },
+    "tags": {
+      "label": "Étiquettes d'action",
+      "hint": "Ajout d'étiquettes qui définissent les prérequis, le comportement et les modificateurs de cette action. L'ordre des étiquettes a une importance car les dernières étiquettes auront précédence sur les premières si elles modifient les mêmes propriétés de l'action."
+    },
+    "target": {
+      "label": "Cible de l'action",
+      "scope": {
+        "label": "Portée affectée",
+        "hint": "Quelle disposition de cibles sont affectées par cette action?"
+      },
+      "type": {
+        "label": "Type de la cible",
+        "hint": "Quel type de cible ou de zone est affecté par cette action?"
+      },
+      "number": {
+        "label": "Nombre de cibles",
+        "hint": "Combien parmi les types de cible sélectionnés sont affectés par cette action?"
+      },
+      "size": {
+        "label": "Taille de la cible",
+        "hint": "Certains types de cible sont modifiés en plus par une taille en pieds."
+      },
+      "limit": {
+        "label": "Cibles maximum",
+        "hint": "Limite l'effet de cette action à un nombre maximum de personnages cibles individuelles? Par défaut, toutes les cibles seront affectées."
+      },
+      "multiple": {
+        "label": "Applications multiples",
+        "hint": "Applique les effets de cette action plusieurs fois par cible? Par défaut, l'action ne sera appliquée qu'une fois par cible."
+      }
+    },
+    "range": {
+      "label": "Portée de l'action",
+      "hint": "Définit une portée minimum ou maximum en pieds à laquelle cette action peut être réalisée.",
+      "minimum": {
+        "label": "Minimum"
+      },
+      "maximum": {
+        "label": "Maximum"
+      },
+      "weapon": {
+        "label": "Portée de l'arme utilisée",
+        "hint": "La portée de cette action est définie par la portée effective de l'arme utilisée."
+      }
+    },
+    "actionHooks": {
+      "label": "Accroches d'action",
+      "hint": "ATTENTION! Les accroches d'action sont une fonctionnalité AVANCÉE pour automatiser les mécaniques d'action. Mal configurer ces accroches peuvent avoir de sérieuses conséquences. N'essayez pas de faire des modifications à moins que vous ne sachiez ce que vous faites."
+    }
+  },
+  "SHEET": {
+    "TITLE": "Action"
+  },
+  "TABS": {
+    "DESCRIPTION": "Description",
+    "USAGE": "Usage",
+    "TARGET": "Cible",
+    "EFFECTS": "Effets",
+    "HOOKS": "Accroches"
+  }
+},
+
+"ACTOR": {
+  "FIELDS": {
+    "details": {
+      "biography": {
+        "appearance": {
+          "label": "Apparence"
+        },
+        "public": {
+          "label": "Biographie publique"
+        },
+        "private": {
+          "label": "Biographie privée"
+        },
+        "age": {
+          "label": "Age"
+        },
+        "height": {
+          "label": "Hauteur"
+        },
+        "weight": {
+          "label": "Poids"
+        }
+      }
+    },
+    "movement": {
+      "size": {
+        "label": "Taille",
+        "tooltip": "Le nombre de carrés de la grille occupés par cette créature."
+      },
+      "sizeBonus": {
+        "label": "Bonus de taille",
+        "hint": "Un modificateur addictif à la Taille de base de la créature défini par son ascendance ou sa taxonomie."
+      },
+      "stride": {
+        "label": "Foulée",
+        "tooltip": "Distance de mouvement par point d'action dépensé."
+      },
+      "strideBonus": {
+        "label": "Bonus de foulée",
+        "hint": "Un modificateur addictif à la vitesse de foulée de l'acteur défini par son ascendance ou sa taxonomie."
+      },
+      "engagement": {
+        "label": "Engagement",
+        "labelShort": "Engage",
+        "tooltip": "Nombre d'ennemis engagés<br>(Taille - 2) + Bonus d'engagement"
+      },
+      "engagementBonus": {
+        "label": "Bonus d'engagement",
+        "hint": "Un modificateur addictif à l'engagement de base."
+      }
+    }
+  },
+  "TABS": {
+    "ATTRIBUTES": "Attributs",
+    "ACTIONS": "Actions",
+    "EFFECTS": "Effets",
+    "SKILLS": "Compétences",
+    "TALENTS": "Talents",
+    "INVENTORY": "Inventaire",
+    "SPELLS": "Sorts",
+    "BIOGRAPHY": "Biographie"
+  },
+  "LABELS": {
+    "CURRENT_EQUIPMENT": "Equipment actuel",
+    "FAVORITE_ACTIONS": "Actions favorites ",
+    "EQUIPMENT_HINT": "Equipez les armes et l'armure depuis votre Sac-à-dos en cliquant l'icone de bouclier.",
+    "BACKPACK_HINT": "Ajoutez une armure ou des armes en les lachant depuis les packs de compendium Crucible fournis.",
+    "SIZE": "Taille"
+  }
+},
+
+"ACTOR.AppliedDetailItem": "A appliqué le {type} {name} à {actor}.",
+
+"ANCESTRY": {
+  "FIELDS": {
+    "description": {
+      "label": "Description de l'ascendance"
+    },
+    "size": {
+      "label": "Taille",
+      "hint": "La taille de cette ascendance en carrés de la grille."
+    },
+    "stride": {
+      "label": "Foulée",
+      "hint": "La vitesse de mouvement de départ de cette ascendance en carrés de la grille."
+    },
+    "primary": {
+      "label": "Caractéristique primaire",
+      "hint": "Selectionnez une caractéristique primaire dont le score commence à 3."
+    },
+    "secondary": {
+      "label": "Caractéristique secondaire",
+      "hint": "Selectionnez une caractéristique secondaire dont le score commence à 2."
+    },
+    "resistance": {
+      "label": "Résistance aux dégats",
+      "hint": "Une résistance biologique (+5) à un certain type de dégats."
+    },
+    "vulnerability": {
+      "label": "Vulnérabilité aux dégats",
+      "hint": "Une vulnérabilité biologique (-5) à un certain type de dégats."
+    }
+  },
+  "SHEET": {
+    "BROWSE": "Parcourir les ascendances",
+    "CHOOSE": "Choisir une ascendance",
+    "CLEAR": "Effacer l'ascendance",
+    "ABILITIES": "Scores de Caractéristiques",
+    "RESISTANCES": "Résistances et vulnerabilités",
+    "RESISTANCE_HINT": "Vous devez choisir à la fois une résistance et une vulnérabilité si vous sélectionnez au moins l'une des deux.",
+    "STATURE": "Stature d'ascendance"
+  },
+  "WARNINGS": {
+    "ABILITIES": "Les caractéristiques primaires et secondaires d'une ascendance ne doivent pas être les mêmes.",
+    "RESISTANCES": "Les résistances et vulnerabilités choisies pour une Ascendance ne doivent pas être les mêmes."
+  }
+},
+
+"ANCESTRY.ApplyError": "Vous ne pouvez appliquer une ascendance qu'à un personnage de niveau 0 avec aucun point de compétence ou de caractéristique dépensé.",
+
+"ACTION.Action": "Action",
+"ACTION.Condition": "Condition",
+"ACTION.Targets": "Cibles",
+"ACTION.TemplateTargets": "Modèle de cibles",
+"ACTION.Confirmed": "Confirmé",
+"ACTION.Unconfirmed": "Non confirmé",
+"ACTION.WarningCannotUseTag": "{name} ne peut pas utiliser l'action {action} qui a besoin du tag {tag}!",
+"ACTION.WarningCannotAffordCost": "{name} n'a pas suffisamment de {resource} pour utiliser {action}!",
+"ACTION.WarningCannotSpendAction": "{name} ne peut pas dépenser de l'action parce qu'il est paralysé!",
+"ACTION.WarningCannotSpendFocus": "{name} ne peut pas dépenser de focus parce qu'ils sont actuellement {status}!",
+"ACTION.WarningInvalidTarget": "Vous devez désigner au moins un {type} comme cible pour {action}!",
+"ACTION.WarningCannotTargetSelf": "Vous ne pouvez pas cibler vous-même avec cette action!",
+"ACTION.WarningIncorrectTargets": "Vous pouvez seulement désigner jusqu'à {number} {type} cibles pour {action}!",
+"ACTION.WarningRequireTemplate": "Vous devez placer un modèle de mesure pour indiquer l'aire d'effet de {action}.",
+"ACTION.WarningMinimumRange": "Une cible sélectionnée est plus proche que la distance minimum de {min} pieds.",
+"ACTION.WarningMaximumRange": "Une cible sélectionnée est plus loin que la distance maximum de {max} pieds.",
+
+"ACTION.EFFECTS.Add": "Ajoutez un effet",
+"ACTION.EFFECTS.Delete": "Enlevez un effet",
+
+"ACTION.TAG_CATEGORIES.ATTACK": "Attaque",
+"ACTION.TAG_CATEGORIES.REQUIREMENTS": "Prérequis",
+"ACTION.TAG_CATEGORIES.CONTEXT": "Contexte",
+"ACTION.TAG_CATEGORIES.MODIFIERS": "Modificateurs",
+"ACTION.TAG_CATEGORIES.DEFENSES": "Défenses",
+"ACTION.TAG_CATEGORIES.DAMAGE": "Dégats",
+"ACTION.TAG_CATEGORIES.SCALING": "Dimensionnement",
+"ACTION.TAG_CATEGORIES.RESOURCES": "Ressources",
+"ACTION.TAG_CATEGORIES.SKILLS": "Compétences",
+"ACTION.TAG_CATEGORIES.SPECIAL": "Spécial",
+
+"ACTION.TagAfterStrike": "Après la frappe",
+"ACTION.TagAfterStrikeTooltip": "Cette action peut seulement être réalisée immédiatement après une attaque de frappe basique qui n'a pas fait d'échec critique.",
+"ACTION.TagDeadly": "Mortelle",
+"ACTION.TagDeadlyTooltip":  "Cette action a le potentiel d'infliger un énorme montant de dégats, augmentant le multiplicateur de dégats pour chaque dégat infligé de x1.",
+"ACTION.TagDifficult": "Difficile",
+"ACTION.TagDifficultTooltip":  "Cette action est difficile ou complexe à réaliser. Vous subissez 2 fléaux supplémentaires quand vous tentez cette action.",
+"ACTION.TagDualWield": "Double arme",
+"ACTION.TagDualWieldTooltip":  "Cette action demande de manier deux armes séparées ou d'être complètement à mains nues pour être activée.",
+"ACTION.TagEmpowered": "Puissante",
+"ACTION.TagEmpoweredTooltip": "Cette action est puissante et inflige des dégats additionnels, gagnant un bonus de +2 aux dégats si elle est réussie.",
+"ACTION.TagExposing": "Exposante",
+"ACTION.TagExposingTooltip":  "Cette action laisse votre cible exposée, les affectant temporairement avec la condition Exposé.",
+"ACTION.TagAccurate": "Précise",
+"ACTION.TagAccurateTooltip": "Cette action est particulièrement précise. Vous gagnez 2 bénédictions supplémentaires quand vous tentez cette action.",
+"ACTION.TagFinesse": "Finesse",
+"ACTION.TagFinesseTooltip": "Cette action demande un certain montant de finesse pour l'executer. Vous devez manier une arme qui s'utilise avec la Dextérité.",
+"ACTION.TagFlanking": "Tenaille",
+"ACTION.TagFlankingTooltip": "Cette action peut seulement être utilisée contre une cible prise en tenaille ou non consciente de l'action.",
+"ACTION.TagFreehand": "Main libre",
+"ACTION.TagFreehandTooltip": "Cette action demande d'avoir une main qui ne tient pas actuellement un objet pour être utilisée.",
+"ACTION.TagBrute": "Brute",
+"ACTION.TagBruteTooltip": "Cette action implique l'application de la force brute et demande une arme qui s'utilise avec la Force.",
+"ACTION.TagHarmless": "Bégnine",
+"ACTION.TagHarmlessTooltip": "Cette action n'inflige pas un effet directement néfaste, son multiplicateur de dégats est de zéro.",
+"ACTION.TagHealing": "Soin",
+"ACTION.TagHealingTooltip": "Cette action fournit un rétablissement en éprouvant le seuil de Blessures d'un allié.",
+"ACTION.TagWeakened": "Affaiblie",
+"ACTION.TagWeakenedTooltip": "Cette action est plus faible que les attaques normales et a un malus aux dégats de -2.",
+"ACTION.TagMechanical": "Mécanique",
+"ACTION.TagMechanicalTooltip": "Cette action demande l'utilisation d'une arme mécanique.",
+"ACTION.TagMelee": "Mêlée",
+"ACTION.TagMeleeTooltip": "Cette action demande de manier une arme de mêlée ou d'être à mains nues pour être utilisée.",
+"ACTION.TagMainHand": "Main principale",
+"ACTION.TagMainHandTooltip": "Cette action utilise votre arme principale pour réaliser une attaque.",
+"ACTION.TagMovement": "Mouvement",
+"ACTION.TagMovementTooltip": "Cette action vous permet de vous déplacer dans le cadre de son activation, en incluant un cout en point d'action réduit pour une action de mouvement gratuite par round.",
+"ACTION.TagNonCombat": "Hors-Combat",
+"ACTION.TagNonCombatTooltip": "Actions qui peuvent seulement être pratiquées en dehors d'une rencontre de combat.",
+"ACTION.TagOneHand": "Une main",
+"ACTION.TagOneHandTooltip": "Cette action demande de manier une arme à une main.",
+"ACTION.TagProjectile": "Projectile",
+"ACTION.TagProjectileTooltip": "Cette action demande l'utilisation d'une arme à projectiles.",
+"ACTION.TagRallying": "Ralliement",
+"ACTION.TagRallyingTooltip": "Cette action fournit un rétablissement en éprouvant le seuil de folie d'un allié.",
+"ACTION.TagRanged": "A distance",
+"ACTION.TagRangedTooltip": "Cette action demande de manier une arme à ditance pour être utilisée.",
+"ACTION.TagReaction": "Réaction",
+"ACTION.TagReactionTooltip": "Cette action peut seulement être réalisée pendant le tour d'une autre créature quand la condition d'activation est satisfaite.",
+"ACTION.TagReload": "Rechargement",
+"ACTION.TagReloadTooltip": "Cette action recharge une arme à distance qui demande un rechargement.",
+"ACTION.TagShield": "Bouclier",
+"ACTION.TagShieldTooltip": "Cette action demande de manier un bouclier pour être utilisée.",
+"ACTION.TagSpell": "Sort",
+"ACTION.TagSpellTooltip": "Cette action implique de la sorcellerie.",
+"ACTION.TagSkill": "Compétence",
+"ACTION.TagSkillTooltip": "Cette action implique un jet de compétence ciblé ou opposé.",
+"ACTION.TagSummon": "Invocation",
+"ACTION.TagSummonTooltip": "Cette action invoque, appelle ou sinon crée un combattant qui se joint à la rencontre.",
+"ACTION.TagTwoHanded": "Deux mains",
+"ACTION.TagTwoHandedTooltip": "Cette action demande de manier une arme à deux mains pour être utilisée.",
+"ACTION.TagOffHand": "Main secondaire",
+"ACTION.TagOffHandTooltip": "Cette action utilise votre arme secondaire pour réaliser une attaque.",
+"ACTION.TagUnarmed": "Sans arme",
+"ACTION.TagUnarmedTooltip": "Cette action vous demande d'être complétement sans arme afin d'être executée.",
+"ACTION.TagUnarmored": "Sans armure",
+"ACTION.TagUnarmoredTooltip": "Cette action vous demande d'être sans armure afin d'être executée.",
+"ACTION.TagIconicSpell": "Sort iconique",
+"ACTION.TagIconicSpellTooltip": "Cette action est un sort iconique appris grace à la maîtrise de ses composants.",
+"ACTION.TagTargetTooltip": "Le type de cible, la distance et le nombre qui s'applique à cette action.",
+"ACTION.TagCostTooltip": "Le cout en points d'action ou en points de focus pour utiliser cette action.",
+
+"ACTION.ACTIONS": {
+  "DELETE": "Effacer l'action: {name}",
+  "DELETE_CONFIRM": "Etes-vous sûr de vouloir effacer l'action <strong>{name}</strong> du {type} <strong>{parent}</strong> ?"
+},
+
+"ADVANCEMENT.Level": "Niveau",
+"ADVANCEMENT.Progress": "Étapes de progression",
+
+"ARCHETYPE": {
+  "FIELDS": {
+    "abilities": {
+      "label": "Dimensionnement des caractéristiques",
+      "hint": "Définit comment les scores de caractéristiques pour les créatures de cet archétype se dimensionnent alors qu'elles progressent en niveau. Allouez 18 points entre tous les scores de caratéristiques. Chaque score de caractéristique peut être entre zéro et 8. Les adversaires augmenteront leurs caractéristiques d'un point par niveau. Les scores avec une valeur plus importante avancent plus fréquemment."
+    },
+    "talents": {
+      "label": "Talents accordés",
+      "hint": "Configure un ou plusieurs talents que cet archétype reçoit automatiquement."
+    }
+  },
+  "SHEET": {
+    "CHOOSE": "Choisir un archétype",
+    "CLEAR": "Effacer l'archétype",
+    "TALENT_ADD": "Ajouter un talent",
+    "TALENT_REMOVE": "Enlever un talent",
+    "TALENT_DROP": "Ajoutez un talent à cet archétype en glissant-déposant les packs de talents du compendium."
+  }
+},
+
+"ARMOR": {
+  "FIELDS": {
+    "armor": {
+      "label": "Armure",
+      "base": {
+        "label": "Armure de base"
+      }
+    },
+    "dodge": {
+      "label": "Esquive",
+      "base": {
+        "label": "Esquive de base"
+      }
+    },
+    "properties": {
+      "label": "Propriétés de l'armure"
+    }
+  },
+  "CATEGORIES": {
+    "UNARMORED": "Sans armure",
+    "LIGHT": "Armure légère",
+    "MEDIUM": "Armure moyenne",
+    "HEAVY": "Armure lourde",
+    "NATURAL": "Armure naturelle"
+  },
+  "SHEET": {
+    "DEFENSES": "Défenses de l'armure",
+    "EQUIPMENT": "Détails de l'équipement",
+    "ARMOR_BONUS": "Bonus d'armure",
+    "DODGE_SCALING": "Dimensionnement par la Dextérité",
+    "SCALED_PRICE": "Prix dimensionné",
+    "TYPE": "Type d'armure"
+  },
+  "PROPERTIES": {
+    "BULKY": "Encombrant",
+    "ORGANIC": "Organique"
+  }
+},
+
+"ATTACK.RESULT_TYPES.MISS": "Raté",
+"ATTACK.RESULT_TYPES.DODGE": "Esquive",
+"ATTACK.RESULT_TYPES.PARRY": "Parade",
+"ATTACK.RESULT_TYPES.BLOCK": "Blocage",
+"ATTACK.RESULT_TYPES.ARMOR": "Armure",
+"ATTACK.RESULT_TYPES.RESIST": "Resistance",
+"ATTACK.RESULT_TYPES.GLANCE": "Aperçu",
+"ATTACK.RESULT_TYPES.HIT": "Touché",
+
+"ATTRIBUTES.Abilities": "Scores de caractéristique",
+"ATTRIBUTES.Pools": "Réservoirs de ressource",
+"ATTRIBUTES.Resistances": "Résistances aux dégats",
+
+"BACKGROUND": {
+  "FIELDS": {
+    "description": {
+      "label": "Description de l'historique"
+    },
+    "skills": {
+      "label": "Compétences acquises",
+      "hint": "Choisissez quatre compétences qui ont été acquises dans le cadre de votre historique, chacune débutant au rang Novice."
+    },
+    "talents": {
+      "label": "Talents acquis",
+      "hint": "Configurez un talent ou plus que cet historique reçoit automatiquement."
+    }
+  },
+  "SHEET": {
+    "BROWSE": "Parcourir les historiques",
+    "CLEAR": "Effacer l'historique",
+    "CHOOSE": "Choisir l'historique",
+    "TALENT_ADD": "Ajouter un talent",
+    "TALENT_REMOVE": "Enlever un talent",
+    "TALENT_DROP": "Ajoutez un talent à cet historique en glissant-déposant les packs de talents du compendium."
+  },
+  "ERRORS": {
+    "APPLY": "Vous pouvez seulement appliquer un historique à un personnage de niveau 0 sans points de compétence dépensés.",
+    "SKILLS_NUMBER": "Un historique ne doit pas fournir plus de quatre compétences acquises.",
+    "TALENT_NUMBER": "Un historique peut contenir un maximum d'un Talent de départ.",
+    "TALENT_TIER": "Les historiques peuvent seulement des Talents de départ de Niveau 0."
+  }
+},
+
+"COMBAT.WarningCannotChangeRound": "Seul un utilisateur MJ peut changer le round de combat.",
+
+"DAMAGE.Damage": "Dégats",
+"DAMAGE.Restoration": "Restoration",
+"DAMAGE.Acid": "Acide",
+"DAMAGE.Bludgeoning": "Contondant",
+"DAMAGE.Cold": "Froid",
+"DAMAGE.Corruption": "Corruption",
+"DAMAGE.Electricity": "Electricité",
+"DAMAGE.Elemental": "Elementaire",
+"DAMAGE.Fire": "Feu",
+"DAMAGE.Physical": "Physique",
+"DAMAGE.Piercing": "Perçants",
+"DAMAGE.Poison": "Poison",
+"DAMAGE.Psychic": "Psychique",
+"DAMAGE.Radiant": "Rayonnant",
+"DAMAGE.Slashing": "Coupant",
+"DAMAGE.Spiritual": "Spirituel",
+"DAMAGE.Void": "Vide",
+
+"DEFENSES.Armor": "Armure",
+"DEFENSES.Block": "Blocage",
+"DEFENSES.Dodge": "Esquive",
+"DEFENSES.Parry": "Parade",
+"DEFENSES.Fortitude": "Fortitude",
+"DEFENSES.Reflex": "Réflexes",
+"DEFENSES.Willpower": "Volonté",
+"DEFENSES.Physical": "Physique",
+"DEFENSES.Wounds": "Blessures",
+"DEFENSES.Madness": "Folie",
+
+"DICE.DiceTotal": "Total des dés",
+"DICE.AbilityBonus": "Bonus de caractéristique",
+"DICE.SkillBonus": "Bonus de compétence",
+"DICE.EnchantmentBonus": "Bonus d'enchantement",
+"DICE.CircumstanceBonus": "Bonus de circonstance",
+"DICE.Damage": "Dégats",
+"DICE.DamageOverflow": "Montant en surplus",
+"DICE.DamageBase": "{type} de base",
+"DICE.DamageBonus": "Bonus d'action",
+"DICE.DamageResistance": "Résistance aux dégats",
+"DICE.DamageVulnerability": "Vulnérabilité aux dégats",
+"DICE.DamageTotal": "Total de dégats",
+"DICE.Healing": "Soin",
+"DICE.Confirm": "Confirmer",
+"DICE.Reverse": "Annuler",
+"DICE.RollTotal": "Total du jet",
+"DICE.SetDifficulty": "Définir la difficulté",
+
+"EFFECT.STATUSES.Blind": "Aveuglé",
+"EFFECT.STATUSES.Broken": "Brisé",
+"EFFECT.STATUSES.Dead": "Mort",
+"EFFECT.STATUSES.Deaf": "Assourdi",
+"EFFECT.STATUSES.Diseased": "Malade",
+"EFFECT.STATUSES.Disoriented": "Désorienté",
+"EFFECT.STATUSES.Enraged": "Enragé",
+"EFFECT.STATUSES.Exposed": "Exposé",
+"EFFECT.STATUSES.Fear": "Effrayé",
+"EFFECT.STATUSES.Flanked": "Pris en tenaille",
+"EFFECT.STATUSES.Guarded": "Protégé",
+"EFFECT.STATUSES.Hastened": "Accéléré",
+"EFFECT.STATUSES.Incapacitated": "Neutralisé",
+"EFFECT.STATUSES.Insane": "Fou",
+"EFFECT.STATUSES.Invisible": "Invisible",
+"EFFECT.STATUSES.Stunned": "Assomé",
+"EFFECT.STATUSES.Mute": "Muet",
+"EFFECT.STATUSES.Paralyzed": "Paralysé",
+"EFFECT.STATUSES.Prone": "A terre",
+"EFFECT.STATUSES.Resolute": "Résolu",
+"EFFECT.STATUSES.Restrained": "Restreint",
+"EFFECT.STATUSES.Slowed": "Ralentu",
+"EFFECT.STATUSES.Staggered": "Sidéré",
+"EFFECT.STATUSES.Weakened": "Affaibli",
+"EFFECT.STATUSES.FlankedDescription": "Vous êtes pris en tenaille par des ennemis multiples qui gagnent des bénédictions supplémentaires sur leurs attaques!",
+
+"ITEM": {
+  "FIELDS": {
+    "category": {
+      "label": "Catégorie"
+    },
+    "quantity": {
+      "label": "Quantité"
+    },
+    "weight": {
+      "label": "Poids"
+    },
+    "price": {
+      "label": "Prix de base"
+    },
+    "quality": {
+      "label": "Qualité"
+    },
+    "broken": {
+      "label": "Brisé"
+    },
+    "enchantment": {
+      "label": "Niveau d'enchantement"
+    },
+    "equipped": {
+      "label": "Equipé"
+    },
+    "properties": {
+      "label": "Propriétés de l'objet"
+    },
+    "description": {
+      "public": {
+        "label": "Description publique",
+        "hint": "Une description de cet objet qui est visible par tout utilisateur qui a au moins la permission OBSERVATEUR."
+      },
+      "secret": {
+        "label": "Description secrète",
+        "hint": "Une description de cet objet qui est seulement visible aux utilisateurs MJ."
+      }
+    },
+    "actions": {
+      "label": "Actions de l'objet"
+    }
+  },
+  "TABS": {
+    "CONFIGURATION": "Configuration",
+    "ACTIONS": "Actions",
+    "DESCRIPTION": "Description",
+    "HOOKS": "Accroches",
+    "PUBLIC": "Description publique",
+    "SECRET": "Description secrète"
+  }
+},
+
+"ITEM.EnchantmentMundane": "Banal",
+"ITEM.EnchantmentMinor": "Mineur",
+"ITEM.EnchantmentMajor": "Majeur",
+"ITEM.EnchantmentLegendary": "Légendaire",
+
+"ITEM.QualityShoddy": "Piètre",
+"ITEM.QualityStandard": "Standard",
+"ITEM.QualityFine": "Bonne",
+"ITEM.QualitySuperior": "Superieure",
+"ITEM.QualityMasterwork": "De maître",
+
+"KEYBINDINGS.ConfirmAction": "Confirmer l'action",
+"KEYBINDINGS.ConfirmActionHint": "Confirmer les actions enregistrés dans les 60 dernières secondes dans l'ordre dans lesquelles elles ont été effectuées.",
+
+"RESOURCES": {
+  "HEALTH": "Santé",
+  "WOUNDS": "Blessures",
+  "MORALE": "Moral",
+  "MADNESS": "Folie",
+  "ACTION": "Action",
+  "FOCUS": "Focus",
+  "HEROISM": "Héroïsme"
+},
+
+"RULER.CannotAffordMove": "Vous ne pouvez pas vous déplacer de {distance} cases ce qui coute {action} points d'Action.",
+
+"SETTINGS.AutoConfirmName": "Auto-Confirmation de l'action",
+"SETTINGS.AutoConfirmHint": "Autorise l'auto-confirmation des actions en combat qui n'infligent pas de dégats ou causent des effects actifs. Cela peut accélérer les choses mais ce n'est pas recommandé pendant les tests.",
+"SETTINGS.AutoConfirmNone": "Pas d'auto-confirmation",
+"SETTINGS.AutoConfirmSelf": "Actions qui auto-ciblent uniquement",
+"SETTINGS.AutoConfirmAll": "Auto-Confirme toutes les actions",
+
+"SKILL": {
+  "CATEGORY": {
+    "EXPLORATION": {
+      "label": "Exploration",
+      "hint": "Les compétences d'exploration sont relatives à votre capacité de traverser le monde et à affronter ses épreuves."
+    },
+    "KNOWLEDGE": {
+      "label": "Connaissance",
+      "hint": "Les compétences de connaissances sont relatives à l'apprentissage de votre personnage et sa compréhension d'un certain nombre de sujets."
+    },
+    "SOCIAL": {
+      "label" : "Social",
+      "hint": "Les compétences sociales sont relatives à la capacité de votre personnage à intéragir avec d'autres personnes ou d'autres groupes."
+    }
+  },
+  "RANKS": {
+    "UNTRAINED": {
+      "label": "Sans entrainement",
+      "hint": "Vous n'avez pas d'entrainement formel dans ce domaine. Tout succès que vous avez à l'utilisation de cette compétence n'est dû qu'au bon sens ou à la chance."
+    },
+    "UNSPECIALIZED": {
+      "label": "Non spécialisé",
+      "hint": "Vous n'avez pas encore obtenu de voie de spécialisation pour cette compétence."
+    },
+    "NOVICE": {
+      "label": "Novice",
+      "hint": "Vous avez un certain entrainement formel ou une expérience pratique dans les applications fondamentales de cette compétence."
+    },
+    "APPRENTICE": {
+      "label": "Apprenti",
+      "hint": "Vous avez raffiné et affuté les techniques de cette compétence jusqu'à obtenir une forte compétence fonctionnelle."
+    },
+    "SPECIALIST": {
+      "label": "Specialiste",
+      "hint": "Votre niveau dans cette compétence est augmenté par l'expertise dans une spécialisation avancée."
+    },
+    "ADEPT": {
+      "label": "Adepte",
+      "hint": "Vous êtes un expert sur le sujet et à l'aise sur toutes les applications et toutes les aptitudes de base de cette compétence."
+    },
+    "MASTER": {
+      "label": "Maître",
+      "hint": "Vous n'avez pas de rival dans votre maîtrise de cette compétence et de votre spécialisation avancée."
+    }
+  },
+  "PageSheet": "Compétence Crucible",
+  "SheetTitle": "[{actor}] Compétence {skill}",
+  "ChoosePath": "Vous devez choisir une spécialisation avant d'avancer plus avant cette compétence.",
+  "CantAfford": "Vous ne pouvez pas augmenter cette compétence. Le prochain rang coute {cost} points et vous n'avez que {points} points de compétence de disponible.",
+  "RollFlavor": "{name} fait un jet de {skill}",
+  "RollTitle": "[{name}] Jet de compétence {skill}",
+  "TooltipCheck": "[({a1} + {a2}) / 4] + Bonus + Enchantement",
+  "TooltipPassive": "12 + Score"
+},
+
+"SPELL": {
+  "FIELDS": {
+    "description": {
+      "label": "Description du sort"
+    },
+    "actions": {
+      "label": "Actions accordées",
+      "hint": "Associez les actions qui sont disponibles à des personnages qui connaissent ce sort iconique."
+    },
+    "runes": {
+      "label": "Runes",
+      "hint": "L'ensemble de runes qui doit être connu afin d'apprendre ce sort iconique."
+    },
+    "gestures": {
+      "label": "Gestes",
+      "hint": "L'ensemble de gestes qui doit être connu afin d'apprendre ce sort iconique."
+    },
+    "inflections": {
+      "label": "Inflexions",
+      "hint": "L'ensemble d'inflexions qui doit être connu afin d'apprendre ce sort iconique."
+    }
+  },
+  "SHEET": {
+    "KNOWLEDGE": "Connaissance obligatoire"
+  },
+
+  "Iconic": "Sort iconique",
+  "IconicPl": "Sorts iconiques",
+  "IconicNone": "Pas d'emplacement de sort iconique déverouillé.",
+  "DamageType": "Type de dégats",
+  "NameFormatNoun": "{gesture} de {rune}",
+  "NameFormatAdj": "{rune} {gesture}",
+  "COMPONENTS": {
+    "Rune": "Rune d'arcane",
+    "RunePl": "Runes d'arcane",
+    "RuneNone": "Pas de runes d'arcanes connues.",
+    "Gesture": "Geste somatique",
+    "GesturePl": "Gestes somatiques",
+    "GestureNone": "Pas de gestes somatiques connus.",
+    "Inflection": "Inflexion métamagique",
+    "InflectionPl": "Inflexions métamagiques",
+    "InflectionNone": "Pas d'inflexions métamagiques connues."
+  },
+  "RUNES": {
+    "Spirit": "Esprit",
+    "SpiritAdj": "Spirituel",
+    "Death": "Mort",
+    "DeathAdj": "Mortel",
+    "Earth": "Terre",
+    "EarthAdj": "Terrien",
+    "Flame": "Flamme",
+    "FlameAdj": "Enflammé",
+    "Frost": "Froid",
+    "FrostAdj": "Glacé",
+    "Illumination": "Illumination",
+    "IlluminationAdj": "Illuminé",
+    "Kinesis": "Cinétique",
+    "KinesisAdj": "Cinétique",
+    "Life": "Vie",
+    "LifeAdj": "Vital",
+    "Lightning": "Éclair",
+    "LightningAdj": "Voltaïque",
+    "Control": "Contrôle",
+    "ControlAdj": "Controllant",
+    "Shadow": "Ombre",
+    "ShadowAdj": "Ombreux",
+    "Stasis": "Stase",
+    "StasisAdj": "Statique"
+  },
+  "GESTURES": {
+    "Arrow": "Flèche",
+    "Aspect": "Aspect",
+    "Create": "Création",
+    "Fan": "Fan",
+    "Influence": "Influence",
+    "Pulse": "Impulsion",
+    "Ray": "Rayon",
+    "Step": "Pas",
+    "Strike": "Frappe",
+    "Touch": "Toucher",
+    "Ward": "Protection"
+  },
+  "INFLECTIONS": {
+    "Compose": "Compose",
+    "ComposeAdj": "Composé",
+    "Determine": "Determine",
+    "DetermineAdj": "Determiné",
+    "Extend": "Étend",
+    "ExtendAdj": "Étendu",
+    "Elude": "Élude",
+    "EludeAdj": "Éludant",
+    "Negate": "Annule",
+    "NegateAdj": "Annulé",
+    "Pull": "Attire",
+    "PullAdj": "Attirant",
+    "Push": "Repousse",
+    "PushAdj": "Repoussant",
+    "Quicken": "Accélérer",
+    "QuickenAdj": "Accéléré",
+    "Reshape": "Remodeler",
+    "ReshapeAdj": "Modelé"
+  }
+},
+
+"TALENT": {
+  "FIELDS": {
+    "node": {
+      "label": "Noeud du talent",
+      "hint": "Assignez ce talent pour qu'il soit acheté depuis un noeud particulier dans l'arbre des talents."
+    },
+    "description": {
+      "label": "Description du talent"
+    },
+    "actions": {
+      "label": "Actions accordées",
+      "hint": "Associez les actions qui sont disponibles à des personnages qui connaissent ce talent."
+    },
+    "rune": {
+      "label": "Rune",
+      "hint": "Obtenir ce talent octroie la connaissance d'une rune de sorcellerie spécifique."
+    },
+    "gesture": {
+      "label": "Geste",
+      "hint": "Obtenir ce talent octroie la connaissance d'un geste de sorcellerie spécifique."
+    },
+    "inflection": {
+      "label": "Inflexion",
+      "hint": "Obtenir ce talent octroie la connaissance d'une inflexion de sorcellerie spécifique."
+    },
+    "iconicSpells": {
+      "label": "Sorts iconiques",
+      "hint": "Un nombre d'emplacements de sorts iconiques qui sont octroyés par ce talent."
+    },
+    "actorHooks": {
+      "label": "Fonctions d'accroche",
+      "hint": "Cet onglet de configuration concerne des fonctionnalités avancées pour automatiser les effets des talents. Mal configurer les données dans cet onglet peut avoir des sérieuses conséquences. N'essayez pas de faire des changements ici à moins que vous ne sachiez ce que vous faites."
+    }
+  },
+  "ACTIONS": {
+    "ADD": "Ajouter une action",
+    "DELETE": "Effacer une action",
+    "EDIT": "Modifier une action",
+    "HOOK_ADD": "Ajouter une accroche",
+    "HOOK_DELETE": "Effacer une accroche"
+  },
+  "WARNINGS": {
+    "AlreadyOwned": "Vous possédez déjà {name} et vous ne pouvez pas l'ajouter une seconde fois.",
+    "Banned": "Vous ne pouvez pas acheter des talents de signature supplémentaires à ce noeud ou ce niveau.",
+    "CannotAfford": "Vous n'avez pas assez de points de talent pour acheter {name} qui coute {cost} points.",
+    "Inaccessible": "Vous ne pouvez pas acquérir \"{name}\" parce que vous n'avez pas débloqué ce noeud de l'arbre des talents.",
+    "Locked": "Vous ne remplissez pas les conditions pour acquérir \"{name}\" qui demande {requires} {requirement}."
+  },
+  "HOOKS": {
+    "REGISTER": "Enregistrer une fonction d'accroche",
+    "GROUP_PREPARATION": "Préparation des données de l'acteur",
+    "GROUP_ACTION": "Utilisation de l'action"
+  },
+
+  "NodeAttack": "Attaque",
+  "NodeDefault": "PLACEHOLDER",
+  "NodeDefense": "Défense",
+  "NodeHeal": "Soin",
+  "NodeMagic": "Magie",
+  "NodeMove": "Mouvement",
+  "NodeSignature": "Signature",
+  "NodeUtility": "Utilitaire",
+  "PointsAvailable": "Points disponibles"
+},
+
+"TAXONOMY": {
+  "FIELDS": {
+    "abilities": {
+      "label": "Caractéristiques de base",
+      "hint": "Définit les scores de caractéristiques initiales pour les créatures avec cette taxonomie. Allouez 18 points entre tous les scores de caractéristiques. Chaque score de caractéristique doit être entre zéro et 8."
+    },
+    "category": {
+      "label": "Catégorie",
+      "hint": "La catégorie de créature à laquelle cette taxonomie appartient."
+    },
+    "resistances": {
+      "label": "Dimensionnement des résistances",
+      "hint": "Définit comment les résistances et les vulnérabilités pour les créatures de cette taxonomie se dimensionne en avançant en niveau. Assignez des valeurs à chaque résistance entre -3 (plus vulnérable) et +3 (plus résistant). Les types de dégats mis à zéro ne sont ni résistants ni vulnérables. Le total entre toutes les résistances doit faire zéro."
+    },
+    "size": {
+      "label": "Taille"
+    },
+    "stride": {
+      "label": "Foulée"
+    }
+  },
+  "CATEGORIES": {
+    "BEAST": "Bête",
+    "ELEMENTAL": "Elementaire",
+    "GIANT": "Géant",
+    "HUMANOID": "Humanoïde",
+    "OUTSIDER": "Extérieur",
+    "UNDEAD": "Mort-vivant"
+  },
+  "SHEET": {
+    "CHOOSE": "Choisir une taxonomie",
+    "CLEAR": "Effacer la taxonomie",
+    "STATURE": "Stature de la taxonomie"
+  }
+},
+
+"WEAPON": {
+  "CATEGORIES": {
+    "LIGHT1": "Légère (1m)",
+    "SIMPLE1": "Simple (1m)",
+    "BALANCED1": "Équilibrée (1m)",
+    "HEAVY1": "Lourde (1m)",
+    "SIMPLE2": "Simple (2m)",
+    "BALANCED2": "Équilibrée (2m)",
+    "HEAVY2": "Lourde (2m)",
+    "PROJECTILE1": "Projectile (1m)",
+    "PROJECTILE2": "Projectile (2m)",
+    "MECHANICAL1": "Mécanique (1m)",
+    "MECHANICAL2": "Mécanique (2m)",
+    "NATURAL": "Naturelle",
+    "UNARMED": "Sans arme",
+    "SHIELD_LIGHT": "Bouclier léger",
+    "SHIELD_HEAVY": "Bouclier lourd",
+    "TALISMAN1": "Talisman (1m)",
+    "TALISMAN2": "Talisman (2m)"
+  },
+  "FIELDS": {
+    "damageType": {
+      "label": "Type de dégats",
+      "hint": "Configure le type de dégats infligés par cette arme."
+    },
+    "loaded": {
+      "label": "Chargé",
+      "hint": "Si cette arme demande un rechargement, traque si elle est chargée actuellement."
+    },
+    "slot": {
+      "label": "Emplacement équipé",
+      "hint": "Spécifie dans quel emplacement d'équipement cette arme est équipée."
+    },
+    "animation": {
+      "label": "Préfixe animation de l'arme",
+      "hint": "Si vous utilisez Crucible avec intégration de JB2A animation, spécifie quel préfixe d'animation est utilisé pour cet arme."
+    }
+  },
+  "TAGS": {
+    "Ambush": "Embuscade",
+    "AmbushTooltip": "Cette arme convient bien pour frapper avant que vos adversaires aient une chance de réagir. En attaquant une cible avec une initiative plus basse que vous, vous gagnez +1 Bénédiction.",
+    "Blocking": "Blocquante",
+    "BlockingTooltip": "Cette arme fournit un bonus à votre défense de Blocage.",
+    "Engaging": "Engageante",
+    "EngagingTooltip": "Les armes de cette catégorie vous permettent de mieux combattre plusieurs ennemis, augmentant votre Engagement de +1.",
+    "Keen": "Vive",
+    "KeenTooltip": "Cette arme est particulièrement mortelle quand elle accomplit un coup critique. NOTE IMPORTANTE - la propriété vive n'est pas encore implémentée dans le test.",
+    "Oversized": "Surdimensionnée",
+    "OversizedTooltip": "Cette objet est surdimensionné ou au moins encombrante à manier, vous empéchant d'agir rapidement. Vous avez +2 Fléaux à l'initiative lorsque cet objet est équipé.",
+    "Parrying": "Parante",
+    "ParryingTooltip": "Cette arme fournit un bonus à votre défense de Parade.",
+    "Reach": "Allonge",
+    "ReachTooltip": "Cette arme fournit une portée effective plus longue que la normale. Vous êtes capable d'effectuer des attaques basiques de Frappe au double de votre portée normale.",
+    "Reload": "Rechargement",
+    "ReloadTooltip": "Cette arme demande d'être rechargée pour pouvoir frapper. Quand l'arme n'est pas chargée, toute action qui utilise l'arme coute +1 points d'Action.",
+    "Reliable": "Fiable",
+    "ReliableTooltip": "Cette arme est digne de confiance et ne produit presque jamais des résultats spectaculairement mauvais. Le seuil d'échec critique de l'arme est réduit de 2 rendant moins probable que les Frappes qui échouent n'entraine un échec critique.",
+    "Thrown": "Lancer",
+    "ThrownTooltip": "Cette arme peut être lancée, en faisant une Frappe normale jusqu'à une distance de 4 cases.",
+    "Versatile": "Versatile",
+    "VersatileTooltip": "Cette arme peut être maniée avec une ou deux mains et changée entre ces modes sans cout de point d'Action. Quand elle est maniée à deux mains, l'arme gagne +2 dégates de base supplémentaires mais subit un cout d'1 point d'Action supplémentaire pour frapper.",
+    "DamageTooltip": "Une représentation abrégée des capacités offensives de cette arme, exprimée en bonus d'attaque / bonus de dégats / multiplicateur de dégats."
+  },
+  "SHEET": {
+    "EQUIPMENT": "Détails de l'arme",
+    "TYPE": "Type d'arme"
+  },
+  "SLOTS": {
+    "EITHER": "N'importe quelle main",
+    "MAINHAND": "Main principale",
+    "OFFHAND": "Main secondaire",
+    "TWOHAND": "A deux mains"
+  }
+},
+
+"WARNING.AbilityCannotIncrease": "Vous ne pouvez pas augmenter plus cette caractéristique.",
+"WARNING.AbilityCannotDecrease": "Vous ne pouvez pas diminuer plus cette caractéristique.",
+"WARNING.AbilityRequireAncestry": "Vous devez assigner une ascendance avant que vous ne puissiez acheter des augmentations de caractéristique.",
+"WARNING.CannotEquipSlotInUse": "L'acteur {actor} ne peut pas équiper {item} parce que l'emplacement d'objet {type} est déjà en cours d'utilisation.",
+"WARNING.CannotEquipActionCost": "Vous ne pouvez pas équiper d'armement parce que vous n'avez plus de points d'Action disponibles.",
+"WARNING.CannotEquipInvalidCategory": "L'acteur {actor} ne peut pas utiliser {item} dans l'emplacement d'objet {type}.",
+"WARNING.SkillRequireAncestryBackground": "Vous devez assigner à la fois une ascendance et un historique avant de pouvoir acheter des rangs de compétence.",
+
+"WALKTHROUGH.AddAncestry": "Choisissez une ascendance dans le compendium ou dans l'encadré des objets et ajoutez la en glissant-déposant.",
+"WALKTHROUGH.AddBackground": "Choisissez un historique dans le compendium ou dans l'encadré des objets et ajoutez la en glissant-déposant.",
+"WALKTHROUGH.ConfigureArchetype": "Configurez un archétype pour cet adversaire.",
+"WALKTHROUGH.ConfigureTaxonomy": "Configurez une taxonomie pour cet adversaire.",
+"WALKTHROUGH.AbilityPoints": "Dépensez les points de caractéristiques disponibles en augmentant vos scores de caractéristique.",
+"WALKTHROUGH.SkillPoints": "Dépensez les points de compétences disponibles en augmentant vos rangs de compétence.",
+"WALKTHROUGH.TalentPoints": "Dépensez les points de talent disponibles en ouvrant l'arbre de talents.",
+"WALKTHROUGH.NextLevel": "Progression jusqu'au prochain niveau",
+"WALKTHROUGH.LevelZero": "Completez toutes les étapes de création de personnage avant d'avancer votre personnage au niveau 1.",
+"WALKTHROUGH.LevelOne": "Amenez votre personnage au niveau 1 et commencez votre aventure!",
+"WALKTHROUGH.LevelUp": "Vous avez suffisamment progressé pour avancer au prochain niveau. Augmentez votre niveau de un lorsque vous êtes prêt!",
+"WALKTHROUGH.LevelZeroIncomplete": "Vous ne pouvez pas avancer au niveau 1 jusqu'à ce que vous ayez fini toutes les étapes de création de personnage!"
+}
