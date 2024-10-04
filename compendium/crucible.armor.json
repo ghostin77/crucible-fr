@@ -1,0 +1,40 @@
+{
+  "label": "Armure",
+  "folders": {
+		"Heavy": "Lourde",
+		"Light": "Légère",
+		"Medium": "Moyenne"
+	},
+  "entries": {
+    "Brigandine": {
+      "name": "Brigandine"
+    },
+    "Chain Mail": {
+      "name": "Cotte de mailles"
+    },
+    "Heavy Hides": {
+      "name": "Peaux lourdes"
+    },
+    "Leather Armor": {
+      "name": "Armure de cuir"
+    },
+    "Padded Armor": {
+      "name": "Armure matelassée"
+    },
+    "Plate Mail": {
+      "name": "Armure de plates"
+    },
+    "Ring Mail": {
+      "name": "Broigne"
+    },
+    "Scale Mail": {
+      "name": "Armure d'écailles"
+    },
+    "Splint Mail": {
+      "name": "Clibanion"
+    },
+    "Studded Leather Armor": {
+      "name": "Armure de cuir clouté"
+    }
+  }
+}
